@@ -13,11 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Amadeus.CaseStudy.service.AuthService;
 import com.Amadeus.CaseStudy.service.FlightService;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import com.Amadeus.CaseStudy.dto.ResultDto;
 import com.Amadeus.CaseStudy.dto.Tuple;
 import com.Amadeus.CaseStudy.model.Flight;
 
 @RestController
+@Api(value = "Flight Search User Api documentation")
 @RequestMapping("flight")
 public class FlightController {
 
@@ -27,8 +32,11 @@ public class FlightController {
 	@Autowired
 	private FlightService flightService;
 	
+	
+	
 	@GetMapping("/getFlightInfo")
-    public ResultDto validateToken(@RequestHeader("Authorization") String token,
+    @ApiOperation(value = "A method for finding suitable flight with given parameters")
+    public ResultDto getFlightInfo(@RequestHeader("Authorization") String token,
             @RequestParam String departureLocation,
             @RequestParam String arrivalLocation,
             @RequestParam String departureDate,
