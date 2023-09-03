@@ -7,20 +7,30 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
+@ApiModel(value = "Flight Search API Documentation", description = "Model")
 public class Flight extends BaseEntity {
 
+	@ApiModelProperty(value = "Name Of Departure City")
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "departureAirport")
 	private Airport departureAirport;
+	
+	@ApiModelProperty(value = "Name Of Destination City")
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "destinationAirport")
 	private Airport destinationAirport;
 
+	@ApiModelProperty(value = "Date and time of departure")
 	private LocalDateTime departureDate;
-	
+
+	@ApiModelProperty(value = "Date and time of arrival")
 	private LocalDateTime returnDate;
-	
+
+	@ApiModelProperty(value = "Price of the Ticket")
 	private Float price;
 
 	public Flight()
